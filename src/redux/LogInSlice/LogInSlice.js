@@ -21,7 +21,7 @@ export const getUsers = createAsyncThunk(
 
       dispatch(setRequestPending(true)); 
       const result = await axios.post(
-        "http://146.190.118.121/api/login/",
+        "https://technical-task-api.icapgroupgmbh.com/api/login/",
         logInData
       );
 
