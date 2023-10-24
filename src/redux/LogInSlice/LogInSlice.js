@@ -17,7 +17,6 @@ export const getUsers = createAsyncThunk(
     try {
       const state = getState();
       const logInData = state.logIn.logInData;
-      console.log(logInData);
 
       dispatch(setRequestPending(true)); 
       const result = await axios.post(
