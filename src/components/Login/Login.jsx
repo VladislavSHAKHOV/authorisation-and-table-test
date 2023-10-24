@@ -9,8 +9,6 @@ import {
 import Button from "@mui/material/Button";
 import CssBaseline from "@mui/material/CssBaseline";
 import TextField from "@mui/material/TextField";
-import FormControlLabel from "@mui/material/FormControlLabel";
-import Checkbox from "@mui/material/Checkbox";
 import Link from "@mui/material/Link";
 import Paper from "@mui/material/Paper";
 import Box from "@mui/material/Box";
@@ -74,7 +72,7 @@ const Login = () => {
               noValidate
               onSubmit={handleSubmit}
               sx={{ mt: 1 }}
-              style={{position: "relative"}}
+              style={{ position: "relative" }}
             >
               <div style={{ width: "400px", height: "200px" }}>
                 <TextField
@@ -103,10 +101,6 @@ const Login = () => {
                   </Typography>
                 )}
               </div>
-              <FormControlLabel
-                control={<Checkbox value="remember" color="primary" />}
-                label="Remember me"
-              />
               <Button
                 type="submit"
                 fullWidth
@@ -130,7 +124,9 @@ const Login = () => {
                     mt: 0,
                   }}
                 >
-                  <CircularProgress style={{position: "absolute", left: 175, top: 200}} />
+                  <CircularProgress
+                    style={{ position: "absolute", left: 172, top: 290 }}
+                  />
                 </Box>
               )}
             </form>
