@@ -7,15 +7,21 @@ import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 import userValidationSchema from "../../../utils/validationSchema";
 
-const EditUserFormModal = ({ open, onClose, onUpdateUser, existingUsers, userToEdit }) => {
-    const [user, setUser] = useState({
-        id: userToEdit ? userToEdit.id : null,
-        name: userToEdit ? userToEdit.name : "",
-        email: userToEdit ? userToEdit.email : "",
-        birthday_date: userToEdit ? userToEdit.birthday_date : "",
-        phone_number: userToEdit ? userToEdit.phone_number : "",
-        address: userToEdit ? userToEdit.address : "",
-      });
+const EditUserFormModal = ({
+  open,
+  onClose,
+  onUpdateUser,
+  existingUsers,
+  userToEdit,
+}) => {
+  const [user, setUser] = useState({
+    id: userToEdit ? userToEdit.id : null,
+    name: userToEdit ? userToEdit.name : "",
+    email: userToEdit ? userToEdit.email : "",
+    birthday_date: userToEdit ? userToEdit.birthday_date : "",
+    phone_number: userToEdit ? userToEdit.phone_number : "",
+    address: userToEdit ? userToEdit.address : "",
+  });
 
   const [errors, setErrors] = useState({});
 
@@ -35,14 +41,18 @@ const EditUserFormModal = ({ open, onClose, onUpdateUser, existingUsers, userToE
   const isPhoneUnique = (phone) => {
     return !existingUsers.some((user) => user.phone_number === phone);
   };
-  
+
   const handleUpdateUser = () => {
     userValidationSchema
       .validate(user, { abortEarly: false })
       .then(() => {
-        if (isNameUnique(user.name) && isEmailUnique(user.email) && isPhoneUnique(user.phone_number)) {
-            console.log({...user, id: userToEdit.id});
-          onUpdateUser({...user, id: userToEdit.id});
+        if (
+          isNameUnique(user.name) &&
+          isEmailUnique(user.email) &&
+          isPhoneUnique(user.phone_number)
+        ) {
+          console.log({ ...user, id: userToEdit.id });
+          onUpdateUser({ ...user, id: userToEdit.id });
           setErrors({});
           onClose();
         } else {
@@ -119,7 +129,6 @@ const EditUserFormModal = ({ open, onClose, onUpdateUser, existingUsers, userToE
           helperText={errors.address}
           style={{ marginTop: 16 }}
         />
-       
       </DialogContent>
       <DialogActions>
         <Button onClick={onClose} color="primary">

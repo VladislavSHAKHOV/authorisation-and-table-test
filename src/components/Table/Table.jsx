@@ -7,6 +7,7 @@ import { useEffect } from 'react';
 import { Button } from '@mui/material';
 import AddUserFormModal from './AddUserForm/AddUserFormModal';
 import EditUserFormModal from './EditUserFormModal/EditUserFormModal';
+import MyComment from '../MyComment/MyComment';
 
 const columns = [
   { field: 'id', headerName: 'ID', width: 90 },
@@ -64,6 +65,8 @@ const Table = () => {
   const [isModalOpen, setModalOpen] = useState(false);
   const [isEditModalOpen, setEditModalOpen] = useState(false);
   const [selectedUser, setSelectedUser] = useState(null);
+  const [isLoading, setIsLoading] = useState(true);
+
 
   const handleOpenModal = () => {
     setModalOpen(true);
@@ -103,7 +106,11 @@ const Table = () => {
 
   useEffect(() => {
     if (!isDataLoaded) {
-      dispatch(getTableData());
+      setIsLoading(true);
+      dispatch(getTableData())
+        .then(() => {
+          setIsLoading(false);
+        });
     }
   }, [dispatch, isDataLoaded]);
 
@@ -142,8 +149,10 @@ const Table = () => {
             disableRowSelectionOnClick
             onRowClick={(params) => handleEditUser(params.row)}
           />
+         
         )}
       </Box>
+      <MyComment></MyComment>
     </>
   );
 };
